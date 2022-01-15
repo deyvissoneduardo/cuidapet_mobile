@@ -1,4 +1,3 @@
-import 'package:cuidaper_mobile/app/core/helpers/logger.dart';
 import 'package:cuidaper_mobile/app/core/ui/extensions/size_screen_extension.dart';
 import 'package:cuidaper_mobile/app/core/ui/extensions/theme_extension.dart';
 import 'package:cuidaper_mobile/app/modules/auth/login/widgets/login_form.dart';
