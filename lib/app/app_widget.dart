@@ -14,7 +14,7 @@ class AppWidget extends StatelessWidget {
       builder: () => MaterialApp(
         builder: asuka.builder,
         navigatorObservers: [asuka.asukaHeroController],
-        initialRoute: '/auth',
+        initialRoute: '/auth/',
         title: UiConfig.title,
         theme: UiConfig.theme,
       ).modular(),

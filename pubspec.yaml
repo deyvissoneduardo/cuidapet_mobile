@@ -10,10 +10,10 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
-  flutter_modular: ^3.3.1
-  mobx: ^2.0.4
-  flutter_mobx: ^2.0.2
-  asuka: ^2.0.0-nullsafety.2
+  flutter_modular: ^4.3.1
+  mobx: ^2.0.6+1
+  flutter_mobx: ^2.0.3+2
+  asuka: ^2.0.0
   dio: ^4.0.0
   flutter_screenutil: ^5.0.0+2
 
@@ -21,8 +21,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.4
-  mobx_codegen: ^2.0.3
-  build_runner: ^2.1.1
+  mobx_codegen: ^2.0.5+2
+  build_runner: ^2.1.7
 
 
 flutter:
