@@ -1,3 +1,4 @@
+import 'package:cuidaper_mobile/app/core/ui/widgets/cuidapet_default_button.dart';
 import 'package:cuidaper_mobile/app/core/ui/widgets/cuidapet_text_form_field.dart';
 import 'package:flutter/material.dart';
 
@@ -23,15 +24,9 @@ class _LoginFormState extends State<LoginForm> {
           obscureText: true,
         ),
         const SizedBox(height: 20),
-        Container(
-          width: double.infinity,
-          height: 58,
-          padding: const EdgeInsets.all(10),
-          child: ElevatedButton(
-            onPressed: () {},
-            child: const Text('Entrar'),
-          ),
-        )
+        const CuidapetDefaultButton(
+          label: 'Entrar',
+        ),
       ],
     );
   }
