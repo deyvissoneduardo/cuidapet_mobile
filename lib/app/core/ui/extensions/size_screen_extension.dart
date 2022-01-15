@@ -7,5 +7,5 @@ extension SizeScreenExtension on num {
   double get sp => ScreenUtil().setSp(this);
   double get sw => ScreenUtil().screenWidth * this;
   double get sh => ScreenUtil().screenHeight * this;
-  double get statusBarHeight => ScreenUtil().statusBarHeight * this;
+  double get stausBarHeight => ScreenUtil().statusBarHeight * this;
 }
