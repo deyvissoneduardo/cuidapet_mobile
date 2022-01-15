@@ -1,3 +1,4 @@
+import 'package:cuidaper_mobile/app/core/ui/ui_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:asuka/asuka.dart' as asuka;
@@ -13,6 +14,9 @@ class AppWidget extends StatelessWidget {
       builder: () => MaterialApp(
         builder: asuka.builder,
         navigatorObservers: [asuka.asukaHeroController],
+        initialRoute: '/auth',
+        title: UiConfig.title,
+        theme: UiConfig.theme,
       ).modular(),
     );
   }
