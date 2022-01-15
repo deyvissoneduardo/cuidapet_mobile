@@ -17,6 +17,7 @@ dependencies:
   dio: ^4.0.0
   flutter_screenutil: ^5.0.0+2
   flutter_dotenv: ^5.0.2
+  logger: ^1.1.0
 
   firebase_core: ^1.11.0
   firebase_auth: ^3.3.5
