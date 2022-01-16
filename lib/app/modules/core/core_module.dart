@@ -6,6 +6,10 @@ import 'package:cuidaper_mobile/app/core/local_storage/shared_preferences_local_
 import 'package:cuidaper_mobile/app/core/rest_client/dio_rest_client.dart';
 import 'package:cuidaper_mobile/app/core/rest_client/rest_client.dart';
 import 'package:cuidaper_mobile/app/modules/core/auth/auth_store.dart';
+import 'package:cuidaper_mobile/app/repositories/user/user_repository.dart';
+import 'package:cuidaper_mobile/app/repositories/user/user_repository_impl.dart';
+import 'package:cuidaper_mobile/app/service/user/user_service.dart';
+import 'package:cuidaper_mobile/app/service/user/user_service_impl.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class CoreModule extends Module {
@@ -19,5 +23,11 @@ class CoreModule extends Module {
     Bind.lazySingleton<LocalSecurityStorage>(
         (i) => FlutterSecureStorageLocalSecurityStorageImpl(),
         export: true),
+    Bind.lazySingleton<UserRepository>(
+        (i) => UserRepositoryImpl(restClient: i(), log: i()),
+        export: true),
+    Bind.lazySingleton<UserService>(
+        (i) => UserServiceImpl(userRepository: i(), log: i()),
+        export: true)
   ];
 }
