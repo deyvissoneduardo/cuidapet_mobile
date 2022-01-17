@@ -7,12 +7,14 @@ class CuidapetTextFormField extends StatelessWidget {
   final bool obscureText;
   final IconButton? suffixIcon;
   final ValueNotifier<bool> _obscureTextVN;
+  final TextInputType? keyboardType;
 
   CuidapetTextFormField({
     Key? key,
     required this.label,
     this.controller,
     this.validator,
+    this.keyboardType,
     this.obscureText = false,
     this.suffixIcon,
   })  : _obscureTextVN = ValueNotifier<bool>(obscureText),
@@ -31,6 +33,7 @@ class CuidapetTextFormField extends StatelessWidget {
           controller: controller,
           validator: validator,
           obscureText: obscureTextValue,
+          keyboardType: keyboardType,
           decoration: InputDecoration(
             labelText: label,
             labelStyle: const TextStyle(

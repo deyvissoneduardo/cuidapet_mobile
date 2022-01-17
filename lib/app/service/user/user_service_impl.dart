@@ -2,7 +2,6 @@ import 'package:cuidaper_mobile/app/core/exceptions/failure.dart';
 import 'package:cuidaper_mobile/app/core/helpers/logger.dart';
 import 'package:cuidaper_mobile/app/repositories/user/user_repository.dart';
 import 'package:cuidaper_mobile/app/service/user/user_service.dart';
-import 'package:cuidaper_mobile/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class UserServiceImpl implements UserService {
