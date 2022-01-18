@@ -2,7 +2,7 @@ import 'package:cuidaper_mobile/app/core/exceptions/user_exists_exception.dart';
 import 'package:cuidaper_mobile/app/core/helpers/logger.dart';
 import 'package:cuidaper_mobile/app/core/ui/widgets/loader.dart';
 import 'package:cuidaper_mobile/app/core/ui/widgets/messages.dart';
-import 'package:cuidaper_mobile/app/service/user/user_service.dart';
+import 'package:cuidaper_mobile/service/user/user_service.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 part 'register_controller.g.dart';
@@ -27,11 +27,11 @@ abstract class _RegisterControllerBase with Store {
       Modular.to.popAndPushNamed('/auth/');
     } on UserExistsException {
       Loader.hide();
-      Messages.info('E-mail ja cadastrado');
+      Messages.alert('E-mail já utilizado, por favor escolha outro e-mail');
     } catch (e, s) {
-      _log.error('Error ao registrar usuario', error: e, stackTrace: s);
+      _log.error('Erro ao registrar usuário', error: e, stackTrace: s);
       Loader.hide();
-      Messages.alert('Error ao registrar usuario');
+      Messages.alert('Erro ao registrar usuário tente novamente mais tarde');
     }
   }
 }

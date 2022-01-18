@@ -8,8 +8,8 @@ import 'package:cuidaper_mobile/app/core/rest_client/rest_client.dart';
 import 'package:cuidaper_mobile/app/modules/core/auth/auth_store.dart';
 import 'package:cuidaper_mobile/app/repositories/user/user_repository.dart';
 import 'package:cuidaper_mobile/app/repositories/user/user_repository_impl.dart';
-import 'package:cuidaper_mobile/app/service/user/user_service.dart';
-import 'package:cuidaper_mobile/app/service/user/user_service_impl.dart';
+import 'package:cuidaper_mobile/service/user/user_service.dart';
+import 'package:cuidaper_mobile/service/user/user_service_impl.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class CoreModule extends Module {

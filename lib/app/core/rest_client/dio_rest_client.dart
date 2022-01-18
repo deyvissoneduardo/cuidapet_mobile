@@ -1,9 +1,8 @@
-import 'package:cuidaper_mobile/app/core/rest_client/rest_client_exception.dart';
-import 'package:dio/dio.dart';
-
 import 'package:cuidaper_mobile/app/core/helpers/environments.dart';
 import 'package:cuidaper_mobile/app/core/rest_client/rest_client.dart';
+import 'package:cuidaper_mobile/app/core/rest_client/rest_client_exception.dart';
 import 'package:cuidaper_mobile/app/core/rest_client/rest_client_response.dart';
+import 'package:dio/dio.dart';
 
 class DioRestClient implements RestClient {
   late Dio _dio;
@@ -16,7 +15,9 @@ class DioRestClient implements RestClient {
         int.parse(Environments.param('rest_receive_timeout') ?? '0'),
   );
 
-  DioRestClient({BaseOptions? options}) {
+  DioRestClient({
+    BaseOptions? options,
+  }) {
     _dio = Dio(options ?? _options);
   }
 
@@ -33,159 +34,17 @@ class DioRestClient implements RestClient {
   }
 
   @override
-  Future<RestClientResponse<T>> post<T>(
-    String path, {
-    data,
-    Map<String, dynamic>? queryParameters,
-    Map<String, dynamic>? headers,
-  }) async {
+  Future<RestClientResponse<T>> post<T>(String path,
+      {data,
+      Map<String, dynamic>? queryParameters,
+      Map<String, dynamic>? headers}) async {
     try {
       final response = await _dio.post<T>(
         path,
         data: data,
         queryParameters: queryParameters,
-        options: Options(headers: headers),
-      );
-      return RestClientResponse(
-        data: response.data,
-        statusCode: response.statusCode,
-        statusMessage: response.statusMessage,
-      );
-    } on DioError catch (e) {
-      throw RestClientException(
-          message: e.response?.statusMessage,
-          statusCode: e.response?.statusCode,
-          error: e.error,
-          response: _dioErrorConverter(e.response));
-    }
-  }
-
-  @override
-  Future<RestClientResponse<T>> get<T>(
-    String path, {
-    Map<String, dynamic>? queryParameters,
-    Map<String, dynamic>? headers,
-  }) async {
-    try {
-      final response = await _dio.get<T>(
-        path,
-        queryParameters: queryParameters,
-        options: Options(headers: headers),
-      );
-      return RestClientResponse(
-        data: response.data,
-        statusCode: response.statusCode,
-        statusMessage: response.statusMessage,
-      );
-    } on DioError catch (e) {
-      throw RestClientException(
-          message: e.response?.statusMessage,
-          statusCode: e.response?.statusCode,
-          error: e.error,
-          response: _dioErrorConverter(e.response));
-    }
-  }
-
-  @override
-  Future<RestClientResponse<T>> put<T>(
-    String path, {
-    data,
-    Map<String, dynamic>? queryParameters,
-    Map<String, dynamic>? headers,
-  }) async {
-    try {
-      final response = await _dio.put<T>(
-        path,
-        data: data,
-        queryParameters: queryParameters,
-        options: Options(headers: headers),
-      );
-      return RestClientResponse(
-        data: response.data,
-        statusCode: response.statusCode,
-        statusMessage: response.statusMessage,
-      );
-    } on DioError catch (e) {
-      throw RestClientException(
-          message: e.response?.statusMessage,
-          statusCode: e.response?.statusCode,
-          error: e.error,
-          response: _dioErrorConverter(e.response));
-    }
-  }
-
-  @override
-  Future<RestClientResponse<T>> delete<T>(
-    String path, {
-    data,
-    Map<String, dynamic>? queryParameters,
-    Map<String, dynamic>? headers,
-  }) async {
-    try {
-      final response = await _dio.delete<T>(
-        path,
-        data: data,
-        queryParameters: queryParameters,
-        options: Options(headers: headers),
-      );
-      return RestClientResponse(
-        data: response.data,
-        statusCode: response.statusCode,
-        statusMessage: response.statusMessage,
-      );
-    } on DioError catch (e) {
-      throw RestClientException(
-          message: e.response?.statusMessage,
-          statusCode: e.response?.statusCode,
-          error: e.error,
-          response: _dioErrorConverter(e.response));
-    }
-  }
-
-  @override
-  Future<RestClientResponse<T>> patch<T>(
-    String path, {
-    data,
-    Map<String, dynamic>? queryParameters,
-    Map<String, dynamic>? headers,
-  }) async {
-    try {
-      final response = await _dio.patch<T>(
-        path,
-        data: data,
-        queryParameters: queryParameters,
-        options: Options(headers: headers),
-      );
-      return RestClientResponse(
-        data: response.data,
-        statusCode: response.statusCode,
-        statusMessage: response.statusMessage,
-      );
-    } on DioError catch (e) {
-      throw RestClientException(
-          message: e.response?.statusMessage,
-          statusCode: e.response?.statusCode,
-          error: e.error,
-          response: _dioErrorConverter(e.response));
-    }
-  }
-
-  @override
-  Future<RestClientResponse<T>> request<T>(
-    String path, {
-    required String method,
-    data,
-    Map<String, dynamic>? queryParameters,
-    Map<String, dynamic>? headers,
-  }) async {
-    try {
-      final response = await _dio.request<T>(
-        path,
-        data: data,
-        queryParameters: queryParameters,
         options: Options(
           headers: headers,
-          method: method,
         ),
       );
       return RestClientResponse(
@@ -195,10 +54,155 @@ class DioRestClient implements RestClient {
       );
     } on DioError catch (e) {
       throw RestClientException(
-          message: e.response?.statusMessage,
-          statusCode: e.response?.statusCode,
-          error: e.error,
-          response: _dioErrorConverter(e.response));
+        message: e.response?.statusMessage,
+        statusCode: e.response?.statusCode,
+        error: e.error,
+        response: _dioErrorConverter(e.response),
+      );
+    }
+  }
+
+  @override
+  Future<RestClientResponse<T>> get<T>(String path,
+      {Map<String, dynamic>? queryParameters,
+      Map<String, dynamic>? headers}) async {
+    try {
+      final response = await _dio.get<T>(
+        path,
+        queryParameters: queryParameters,
+        options: Options(
+          headers: headers,
+        ),
+      );
+      return RestClientResponse(
+        data: response.data,
+        statusCode: response.statusCode,
+        statusMessage: response.statusMessage,
+      );
+    } on DioError catch (e) {
+      throw RestClientException(
+        message: e.response?.statusMessage,
+        statusCode: e.response?.statusCode,
+        error: e.error,
+        response: _dioErrorConverter(e.response),
+      );
+    }
+  }
+
+  @override
+  Future<RestClientResponse<T>> put<T>(String path,
+      {data,
+      Map<String, dynamic>? queryParameters,
+      Map<String, dynamic>? headers}) async {
+    try {
+      final response = await _dio.put<T>(
+        path,
+        data: data,
+        queryParameters: queryParameters,
+        options: Options(
+          headers: headers,
+        ),
+      );
+      return RestClientResponse(
+        data: response.data,
+        statusCode: response.statusCode,
+        statusMessage: response.statusMessage,
+      );
+    } on DioError catch (e) {
+      throw RestClientException(
+        message: e.response?.statusMessage,
+        statusCode: e.response?.statusCode,
+        error: e.error,
+        response: _dioErrorConverter(e.response),
+      );
+    }
+  }
+
+  @override
+  Future<RestClientResponse<T>> delete<T>(String path,
+      {data,
+      Map<String, dynamic>? queryParameters,
+      Map<String, dynamic>? headers}) async {
+    try {
+      final response = await _dio.delete<T>(
+        path,
+        data: data,
+        queryParameters: queryParameters,
+        options: Options(
+          headers: headers,
+        ),
+      );
+      return RestClientResponse(
+        data: response.data,
+        statusCode: response.statusCode,
+        statusMessage: response.statusMessage,
+      );
+    } on DioError catch (e) {
+      throw RestClientException(
+        message: e.response?.statusMessage,
+        statusCode: e.response?.statusCode,
+        error: e.error,
+        response: _dioErrorConverter(e.response),
+      );
+    }
+  }
+
+  @override
+  Future<RestClientResponse<T>> patch<T>(String path,
+      {data,
+      Map<String, dynamic>? queryParameters,
+      Map<String, dynamic>? headers}) async {
+    try {
+      final response = await _dio.patch<T>(
+        path,
+        data: data,
+        queryParameters: queryParameters,
+        options: Options(
+          headers: headers,
+        ),
+      );
+      return RestClientResponse(
+        data: response.data,
+        statusCode: response.statusCode,
+        statusMessage: response.statusMessage,
+      );
+    } on DioError catch (e) {
+      throw RestClientException(
+        message: e.response?.statusMessage,
+        statusCode: e.response?.statusCode,
+        error: e.error,
+        response: _dioErrorConverter(e.response),
+      );
+    }
+  }
+
+  @override
+  Future<RestClientResponse<T>> request<T>(String path,
+      {data,
+      required String method,
+      Map<String, dynamic>? queryParameters,
+      Map<String, dynamic>? headers}) async {
+    try {
+      final response = await _dio.request<T>(
+        path,
+        data: data,
+        queryParameters: queryParameters,
+        options: Options(
+          headers: headers,
+        ),
+      );
+      return RestClientResponse(
+        data: response.data,
+        statusCode: response.statusCode,
+        statusMessage: response.statusMessage,
+      );
+    } on DioError catch (e) {
+      throw RestClientException(
+        message: e.response?.statusMessage,
+        statusCode: e.response?.statusCode,
+        error: e.error,
+        response: _dioErrorConverter(e.response),
+      );
     }
   }
 
