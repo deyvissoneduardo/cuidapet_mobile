@@ -40,8 +40,8 @@ abstract class RestClient {
 
   Future<RestClientResponse<T>> request<T>(
     String path, {
-    required String method,
     dynamic data,
+    required String method,
     Map<String, dynamic>? queryParameters,
     Map<String, dynamic>? headers,
   });

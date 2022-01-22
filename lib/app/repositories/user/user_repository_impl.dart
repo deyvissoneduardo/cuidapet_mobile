@@ -31,11 +31,10 @@ class UserRepositoryImpl implements UserRepository {
           e.response?.data['message']
               .toLowerCase()
               .contains('usuário já cadastrado')) {
-        _log.error('Usuário já cadastrado', error: e, stackTrace: s);
+        _log.error('Usuário já cadastrado', e, s);
         throw UserExistsException();
       }
-
-      _log.error('Erro ao registrar usuário', error: e, stackTrace: s);
+      _log.error('Erro ao registrar usuário', e, s);
       throw Failure();
     }
   }
