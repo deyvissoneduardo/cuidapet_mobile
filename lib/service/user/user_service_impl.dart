@@ -44,6 +44,7 @@ class UserServiceImpl implements UserService {
           .signInWithEmailAndPassword(email: login, password: password);
       await _saveAccessToken(accessToken);
       await _confirmLogin();
+      await _getUserData();
       _log.info('Logado');
     } on FirebaseAuthException catch (e, s) {
       _log.error('Erro ao logar no FirebaseAuth', e, s);
@@ -59,5 +60,11 @@ class UserServiceImpl implements UserService {
     await _saveAccessToken(confirmModel.accessToken);
     await _localSecurityStorage.write(
         Constants.refreshTokenKey, confirmModel.refreshToken);
+  }
+
+  Future<void> _getUserData() async {
+    final userLogged = await _userRepository.getUserLogged();
+    await _localStorage.write<String>(
+        Constants.userDataKey, userLogged.toJson());
   }
 }
