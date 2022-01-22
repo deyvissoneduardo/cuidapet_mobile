@@ -20,7 +20,7 @@ abstract class _LoginControllerBase with Store {
   Future<void> login(String login, String password) async {
     try {
       Loader.show();
-      await _userService.ligin(login, password);
+      await _userService.login(login, password);
       Loader.hide();
       Modular.to.navigate('/auth/');
     } on UserNotfoundException {

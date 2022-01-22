@@ -1,4 +1,8 @@
 import 'package:cuidaper_mobile/app/core/helpers/environments.dart';
+import 'package:cuidaper_mobile/app/core/helpers/logger.dart';
+import 'package:cuidaper_mobile/app/core/local_storage/local_security_storage.dart';
+import 'package:cuidaper_mobile/app/core/local_storage/local_storage.dart';
+import 'package:cuidaper_mobile/app/core/rest_client/interceptors/auth_interceptor.dart';
 import 'package:cuidaper_mobile/app/core/rest_client/rest_client.dart';
 import 'package:cuidaper_mobile/app/core/rest_client/rest_client_exception.dart';
 import 'package:cuidaper_mobile/app/core/rest_client/rest_client_response.dart';
@@ -16,9 +20,20 @@ class DioRestClient implements RestClient {
   );
 
   DioRestClient({
+    required LocalStorage localStorage,
+    required LocalSecurityStorage localSecurityStorage,
+    required Logger log,
     BaseOptions? options,
   }) {
     _dio = Dio(options ?? _options);
+    _dio.interceptors.addAll([
+      LogInterceptor(),
+      AuthInterceptor(
+        localStorage: localStorage,
+        localSecurityStorage: localSecurityStorage,
+        log: log,
+      )
+    ]);
   }
 
   @override
