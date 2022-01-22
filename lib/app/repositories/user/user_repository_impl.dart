@@ -1,5 +1,6 @@
 import 'package:cuidaper_mobile/app/core/exceptions/failure.dart';
 import 'package:cuidaper_mobile/app/core/exceptions/user_exists_exception.dart';
+import 'package:cuidaper_mobile/app/core/exceptions/user_notfound_exception.dart';
 import 'package:cuidaper_mobile/app/core/helpers/logger.dart';
 import 'package:cuidaper_mobile/app/core/rest_client/rest_client.dart';
 import 'package:cuidaper_mobile/app/core/rest_client/rest_client_exception.dart';
@@ -36,6 +37,29 @@ class UserRepositoryImpl implements UserRepository {
       }
       _log.error('Erro ao registrar usuário', e, s);
       throw Failure();
+    }
+  }
+
+  @override
+  Future<String> login(String login, String password) async {
+    try {
+      final result = await _restClient.unauth().post(
+        '/auth/',
+        data: {
+          'login': login,
+          'password': password,
+          'social_login': false,
+          'supplier_user': false
+        },
+      );
+      return result.data['access_token'];
+    } on RestClientException catch (e, s) {
+      _log.error('Error ao realizar login $e, $s');
+      if (e.statusCode == 403) {
+        _log.error('Usuario não encontrado $e, $s');
+        throw UserNotfoundException();
+      }
+      throw Failure(message: 'Error ao realizar login');
     }
   }
 }
