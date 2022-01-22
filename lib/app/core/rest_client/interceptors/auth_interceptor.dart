@@ -23,7 +23,7 @@ class AuthInterceptor extends Interceptor {
       RequestOptions options, RequestInterceptorHandler handler) async {
     if (options.extra['auth_required'] == true) {
       final accessToken =
-          await _localStorage.read<String>(Constants.ACCESS_TOKEN_KEY);
+          await _localStorage.read<String>(Constants.accessTokenKey);
       if (accessToken == null) {
         // logout
         return handler.reject(DioError(

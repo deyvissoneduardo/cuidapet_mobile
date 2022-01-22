@@ -1,5 +1,6 @@
 class Constants {
   Constants._();
 
-  static const ACCESS_TOKEN_KEY = '/ACCESS_TOKEN_KEY/';
+  static const accessTokenKey = '/ACCESS_TOKEN_KEY/';
+  static const refreshTokenKey = '/REFRESH_TOKEN_KEY/';
 }
