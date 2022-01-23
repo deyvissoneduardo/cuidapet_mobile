@@ -2,7 +2,7 @@ import 'package:cuidaper_mobile/app/core/exceptions/user_exists_exception.dart';
 import 'package:cuidaper_mobile/app/core/helpers/logger.dart';
 import 'package:cuidaper_mobile/app/core/ui/widgets/loader.dart';
 import 'package:cuidaper_mobile/app/core/ui/widgets/messages.dart';
-import 'package:cuidaper_mobile/service/user/user_service.dart';
+import 'package:cuidaper_mobile/app/service/user/user_service.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 part 'register_controller.g.dart';

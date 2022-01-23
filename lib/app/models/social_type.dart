@@ -1,0 +1,1 @@
+enum SocialType { google }
