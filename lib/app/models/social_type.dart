@@ -1,1 +1,4 @@
-enum SocialType { google }
+enum SocialType {
+  google,
+  facebook,
+}
