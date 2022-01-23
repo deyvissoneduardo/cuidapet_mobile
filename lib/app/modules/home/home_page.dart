@@ -1,4 +1,6 @@
+import 'package:cuidaper_mobile/app/modules/core/auth/auth_store.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,7 +16,17 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('home page'),
       ),
-      body: Container(),
+      body: Container(
+        alignment: Alignment.center,
+        child: Center(
+          child: TextButton(
+            onPressed: () {
+              Modular.get<AuthStore>().logout();
+            },
+            child: const Text('Log'),
+          ),
+        ),
+      ),
     );
   }
 }
