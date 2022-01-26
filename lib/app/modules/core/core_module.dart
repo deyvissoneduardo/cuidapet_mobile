@@ -20,10 +20,10 @@ class CoreModule extends Module {
     Bind.lazySingleton((i) => AuthStore(localStorage: i()), export: true),
     Bind.factory<RestClient>(
         (i) => DioRestClient(
-              localStorage: i(),
-              localSecurityStorage: i(),
-              log: i(),
-            ),
+            localStorage: i(),
+            localSecurityStorage: i(),
+            log: i(),
+            authStore: i()),
         export: true),
     Bind.lazySingleton<Logger>((i) => LoggerImpl(), export: true),
     Bind.lazySingleton<LocalStorage>((i) => SharedPreferencesLocalStorageImpl(),
