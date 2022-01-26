@@ -77,7 +77,6 @@ class AuthInterceptor extends Interceptor {
     if (err.requestOptions.extra['auth_required'] == true) {
       final statusCode = err.response?.statusCode;
       if (statusCode == 403 || statusCode == 401) {
-        // processo de refreshToken
         await _refreshToken();
         _log.append(
             '################## Access Token Atualizado ################ ');
